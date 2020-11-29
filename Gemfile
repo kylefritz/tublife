@@ -16,6 +16,7 @@ gem 'bootstrap', '~> 4.3.1' # nice style
 gem 'devise' # for authentication
 gem 'gon' # rails variables in javascript
 gem 'groupdate'
+gem 'haml-rails', '~> 2.0'
 gem 'hashid-rails' # lookup models by hashid
 gem 'image_processing', '~> 1.2' # Use Active Storage variant
 gem 'jbuilder', '~> 2.7' # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -32,6 +33,7 @@ gem 'redcarpet' # markdown the baker's note in admin
 gem 'sass-rails', '>= 6' # css
 gem 'sentry-raven' # debugging to sentry.io
 gem 'sql_query' # load SQL queries from erb templates
+gem 'view_component', require: 'view_component/engine'
 gem 'webpacker', '~> 4.0' # compiles javascript
 
 

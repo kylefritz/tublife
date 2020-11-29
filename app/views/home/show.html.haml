@@ -1,0 +1,15 @@
+%h1 Tublife
+
+.temp-chart= render(TempChartComponent.new(location: "Baltimore", device_name: "Kale-a Lilly"))
+.temp-chart= render(TempChartComponent.new(location: "Richmond", device_name: "Hot Tub Thermometer"))
+
+%br
+%br
+%br
+%br
+%p
+  If you need admin access,
+  %a{:href => "/users/sign_up"} create an account here
+  then ask
+  %code @kyle
+  to turn you on.
