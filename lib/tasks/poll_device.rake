@@ -7,9 +7,11 @@ namespace :poll_device do
     json = `#{comand}`
     puts json
 
-    attrs = JSON.parse(json)
+    attrs_list = JSON.parse(json)
     # puts attrs
 
-    Reading.create!(attrs)
+    attrs_list.each do |attrs|
+      Reading.create!(attrs)
+    end
   end
 end
