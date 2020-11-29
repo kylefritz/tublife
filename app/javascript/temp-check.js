@@ -3,7 +3,7 @@ const ewelink = require("ewelink-api");
 const kyle = { email: "kyle.p.fritz@gmail.com" };
 
 async function main() {
-  console.log("calling ewelink api for temperature check");
+  // console.log("calling ewelink api for temperature check");
   const { email } = kyle;
   const password = process.env.EWELINK_PASSWORD;
   if (!password) {
@@ -19,7 +19,10 @@ async function main() {
     const { name, params } = device;
     const { currentTemperature: degreesCelsius, switch: switchState } = params;
     const degreesF = toFahrenheit(degreesCelsius);
-    console.log(`${name} temp ${degreesF}°F pump: ${switchState}`);
+    // console.log(`${name} temp ${degreesF}°F pump: ${switchState}`);
+    console.log(
+      JSON.stringify({ device_name: name, temp_f: degreesF, pump: switchState })
+    );
   });
 }
 
