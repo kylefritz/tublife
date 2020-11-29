@@ -2,7 +2,7 @@
 
 data_sources:
   main:
-    url: <%= ENV["BLAZER_DATABASE_URL"] %>
+    url: <%= ENV[ENV["BLAZER_DATABASE_KEY"] || 'DATABASE_URL'] %>
 
     # statement timeout, in seconds
     # none by default
@@ -51,7 +51,7 @@ time_zone: "Eastern Time (US & Canada)"
 # before_action_method: require_admin
 
 # email to send checks from
-# from_email: blazer@example.org
+from_email: blazer-no-reply@tubs.fritz.io
 
 # webhook for Slack
 # slack_webhook_url: <%= ENV["BLAZER_SLACK_WEBHOOK_URL"] %>
