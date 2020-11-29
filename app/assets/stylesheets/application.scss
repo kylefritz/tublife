@@ -1,0 +1,182 @@
+// override boostrap colors/variables
+// https://github.com/twbs/bootstrap-rubygem/blob/master/assets/stylesheets/bootstrap/_variables.scss
+$container-max-widths: (
+  sm: 420px,
+  md: 640px,
+  lg: 680px,
+);
+$btn-padding-x-sm: 0.75rem;
+@import "theme";
+
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+
+body {
+  background-color: $background-color;
+  font-family: $font-family;
+  font-weight: 300;
+  color: #2e2927;
+}
+strong {
+  font-weight: 500;
+}
+#background {
+  // set the background-image inline
+  background-size: auto;
+  background-position-x: center;
+  background-position-y: 0; // frequently overridden
+  background-repeat: no-repeat;
+  padding-top: 200px;
+}
+.motzi {
+  #background {
+    background-position-y: -720px;
+  }
+  #logo {
+    height: 100px;
+    margin-bottom: 3rem;
+  }
+}
+.dutch_courage {
+  #logo {
+    height: 250px;
+  }
+}
+.jinji {
+  #background {
+    background-position-y: -120px;
+  }
+}
+.pilgrim {
+  #logo {
+    filter: invert(100%);
+    margin-bottom: 1rem;
+  }
+}
+
+#logo-wrapper {
+  text-align: center;
+  padding-top: 20px;
+}
+#logo {
+  height: 200px;
+}
+.subscriber-info {
+  color: $secondary;
+  font-family: $accent-font-family;
+  font-weight: 400;
+  font-size: 20px;
+}
+$container-margin: 15px;
+$container-margin-padding: 34px + $container-margin;
+
+#menu-name {
+  margin-left: -$container-margin-padding;
+  margin-right: -$container-margin-padding;
+  padding-left: $container-margin-padding;
+  padding-right: $container-margin-padding;
+  margin-bottom: 0;
+  color: white;
+  background: $primary;
+  text-transform: none;
+  padding-top: 45px;
+  padding-bottom: 25px;
+  font-size: 1.6rem;
+  letter-spacing: 0.05rem;
+}
+#deadline {
+  color: white;
+  background: $primary;
+  margin-left: -$container-margin-padding;
+  margin-right: -$container-margin-padding;
+  padding-left: $container-margin-padding;
+  padding-right: $container-margin-padding;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.container {
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+  background: white;
+  padding-left: $container-margin-padding;
+  padding-right: $container-margin-padding;
+  padding-bottom: $container-margin-padding + $container-margin;
+  margin-bottom: 100px;
+}
+@media (max-width: map-get($container-max-widths, sm)) {
+  .container {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    overflow: hidden;
+  }
+  #menu-name {
+    margin-left: -10px;
+    margin-right: -10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .padding-x-mobile-5px {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: "Raleway", sans-serif;
+  color: $primary;
+  text-transform: uppercase;
+}
+h5 {
+  font-weight: 300;
+  margin-top: 3rem;
+}
+h1,
+h2 {
+  text-align: center;
+}
+.btn-primary,
+.btn-secondary,
+.btn-dark,
+.price {
+  text-transform: uppercase;
+  font-family: $accent-font-family;
+  font-weight: 400;
+  letter-spacing: 0.05rem;
+}
+.alert-secondary {
+  border: none;
+  background: $secondary;
+  color: white;
+}
+.price {
+  font-size: 0.8rem;
+}
+.btn-link,
+a {
+  text-decoration: underline;
+}
+
+.bakers-note {
+  font-size: 0.8em;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.05rem;
+}
+
+@media only screen and (min-width: 1025px) {
+  .wrapper {
+    max-width: 900px;
+    margin: auto;
+  }
+}
+
+// for ErrorBoundary
+.stack-trace {
+  white-space: pre;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  font-size: 0.7em;
+  background: white;
+}

@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400&display=swap");
+$font-family: "Raleway", sans-serif;
+$accent-font-family: "Oswald", sans-serif;
+
+$franca-teal: rgb(113, 241, 232);
+$franca-red: rgb(255, 97, 105);
+$motzi-purple: rgb(53, 44, 99);
+
+$background-color: lighten($franca-teal, 25%);
+$secondary: $franca-red;
+$primary: darken($franca-teal, 25%);
