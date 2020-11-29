@@ -12,7 +12,7 @@ gem 'aws-sdk-s3', require: false # for s3/active storage
 gem 'bcrypt', '~> 3.1.7' # for devise
 gem 'blazer' # analytics
 gem 'bootsnap', '>= 1.4.2', require: false # Reduces boot times through caching; required in config/boot.rb
-gem 'bootstrap', '~> 4.3.1' # nice style
+gem 'bootstrap', '~> 4.5' # nice style
 gem 'devise' # for authentication
 gem 'gon' # rails variables in javascript
 gem 'groupdate'

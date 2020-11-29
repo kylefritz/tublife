@@ -13,7 +13,7 @@
       .alert.alert-warning.text-center{:role => "alert"}= notice
     - if alert
       .alert.alert-primary.text-center{:role => "alert"}= alert
-    .container
+    .container-xl
       = yield
       - if current_user&.is_admin?
         %footer.text-center.mt-1
