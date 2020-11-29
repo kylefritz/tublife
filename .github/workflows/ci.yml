@@ -25,6 +25,8 @@ jobs:
       - name: ruby-build 2.7.1
         uses: clupprich/ruby-build-action@master
         id: ruby
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
         with:
           ruby-version: 2.7.1
           cache-available: ${{ steps.cache-ruby.outputs.cache-hit == 'true' }}
