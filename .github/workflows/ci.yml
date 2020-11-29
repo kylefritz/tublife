@@ -76,8 +76,8 @@ jobs:
           bin/rails test
           bin/rails test:system
 
-      - name: jest
-        run: npx jest test/javascript
+      # - name: jest
+      #   run: npx jest test/javascript
 
       - name: heroku deploy tublife
         env:
