@@ -1,7 +1,10 @@
 %h1 Tublife
 
-.temp-chart= render(TempChartComponent.new(location: "Baltimore", device_name: "Kale-a Lilly"))
-.temp-chart= render(TempChartComponent.new(location: "Richmond", device_name: "Hot Tub Thermometer"))
+%h2 Baltimore
+= render(TubChartComponent.new(device_name: "Kale-a Lilly"))
+
+%h2 Richmond
+= render(TubChartComponent.new(device_name: "Hot Tub Thermometer"))
 
 %br
 %br
