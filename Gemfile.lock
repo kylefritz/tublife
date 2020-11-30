@@ -253,6 +253,7 @@ GEM
       rails (>= 4.0)
     options (2.3.2)
     orm_adapter (0.5.0)
+    ostruct (0.2.0)
     paper_trail (11.0.0)
       activerecord (>= 5.2)
       request_store (~> 1.1)
@@ -438,6 +439,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   faker
+  faraday
   fastri
   gon
   groupdate
@@ -451,6 +453,7 @@ DEPENDENCIES
   naturalsort
   newrelic_rpm
   olive_branch
+  ostruct
   paper_trail
   pg (>= 0.18, < 2.0)
   progress_bar

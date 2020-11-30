@@ -14,6 +14,7 @@ gem 'blazer' # analytics
 gem 'bootsnap', '>= 1.4.2', require: false # Reduces boot times through caching; required in config/boot.rb
 gem 'bootstrap', '~> 4.5' # nice style
 gem 'devise' # for authentication
+gem 'faraday' # http client
 gem 'gon' # rails variables in javascript
 gem 'groupdate'
 gem 'haml-rails', '~> 2.0'
@@ -23,6 +24,7 @@ gem 'jbuilder', '~> 2.7' # Build JSON APIs with ease. Read more: https://github.
 gem 'naturalsort', :require => 'natural_sort_kernel' # implements a natural, human-friendly alphanumeric sort
 gem 'newrelic_rpm' # debugging to new relic
 gem 'olive_branch' # convert snake_case to camelCase for json
+gem 'ostruct' # used by http client for parsing dicts
 gem 'paper_trail' # audits
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'progress_bar'

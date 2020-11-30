@@ -13,5 +13,8 @@ namespace :poll_device do
     attrs_list.each do |attrs|
       Reading.create!(attrs)
     end
+
+    Weather.for!("Baltimore")
+    Weather.for!("Richmond")
   end
 end

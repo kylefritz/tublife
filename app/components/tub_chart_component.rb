@@ -3,7 +3,7 @@ class TubChartComponent < ViewComponent::Base
     @device_name = device_name
   end
 
-  def readings
+  def call
     temp_data = Hash[Reading.where(device_name: @device_name).pluck(["created_at", "temp_f"])]
     pump_data = Hash[Reading.where(device_name: @device_name, pump: true).pluck(["created_at", "pump"]).map{|date, pump| [date, pump ? 95 : 0] }]
 
@@ -23,5 +23,4 @@ class TubChartComponent < ViewComponent::Base
       suffix: "°F"
     )
   end
-
 end
