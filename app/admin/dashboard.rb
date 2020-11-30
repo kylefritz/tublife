@@ -8,7 +8,7 @@ ActiveAdmin.register_page "Dashboard" do
           render BaltChartComponent.new
         end
         panel "Richmond" do
-          render TubChartComponent.new(city: "Richmond", device_name: "Hot Tub Thermometer")
+          render TubChartComponent.new(city: "Richmond", device_name: "ElizTUBeth Warmen")
         end
       end
     end
