@@ -2,8 +2,8 @@
 
 one:
   city: MyString
-  temp: MyString
+  temp_f: MyString
 
 two:
   city: MyString
-  temp: MyString
+  temp_f: MyString
