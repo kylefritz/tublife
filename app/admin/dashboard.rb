@@ -6,6 +6,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Baltimore" do
           render TubChartComponent.new(device_name: "Kale-a Lilly")
+          render TubChartComponent.new(device_name: "OBGTub")
         end
         panel "Richmond" do
           render TubChartComponent.new(device_name: "Hot Tub Thermometer")
