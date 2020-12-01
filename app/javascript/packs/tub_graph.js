@@ -1,6 +1,8 @@
 import axios from "axios";
 import moment from "moment";
 import _ from "lodash";
+import Chart from "chart.js";
+require("chartjs-plugin-zoom");
 
 const makeChart = (city, series) => {
   var ctx = document.getElementById(city).getContext("2d");
@@ -36,7 +38,7 @@ const makeChart = (city, series) => {
   return Chart.Line(ctx, {
     data,
     options: {
-      responsive: true,
+      responsive: false,
       hoverMode: "index",
       stacked: false,
       title: {
@@ -69,19 +71,43 @@ const makeChart = (city, series) => {
           },
         ],
       },
+      plugins: {
+        zoom: {
+          pan: {
+            enabled: true,
+            mode: "xy",
+          },
+          zoom: {
+            enabled: true,
+            // drag: true,
+            mode: "xy",
+          },
+        },
+      },
     },
   });
 };
 
+let charts = [];
 window.onload = () => {
   axios.get("/readings.json").then((response) => {
     const { baltimore, richmond } = response.data;
-    makeChart("baltimore", baltimore);
-    makeChart("richmond", richmond);
+    charts = [
+      makeChart("baltimore", baltimore),
+      makeChart("richmond", richmond),
+    ];
   });
+
+  const footer = document.getElementById("footer");
+  footer.remove();
+
+  const toolbar = document.getElementById("toolbar");
+  toolbar.appendChild(footer.children[0]);
 };
 
-// document.getElementById("randomizeData").addEventListener("click", function () {});
+document.getElementById("reset").addEventListener("click", function () {
+  charts.map((c) => c.resetZoom());
+});
 
 const chartColor = (color) => {
   const chartColors = {

@@ -1,0 +1,11 @@
+%h2 Tublife
+
+.chart-container
+  %canvas{ id: "baltimore"}
+.chart-container
+  %canvas{ id: "richmond"}
+
+.toolbar#toolbar
+  %button{ id: "reset"} Reset
+
+  = javascript_pack_tag 'tub_graph'
