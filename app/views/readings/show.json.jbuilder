@@ -10,7 +10,7 @@ def readings(device, color)
 end
 
 def pump(device, color)
-  data = Reading.where(device_name: device, pump: true).order(:created_at).pluck(["created_at", "pump"]).map{|date, pump| [date, pump ? 95 : 0] }
+  data = Reading.where(device_name: device).order(:created_at).pluck(["created_at", "pump"]).map{|date, pump| [date, pump ? 95 : 0] }
   {name: "Pump", data: data, color: color}
 end
 

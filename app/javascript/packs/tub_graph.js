@@ -11,14 +11,24 @@ const makeChart = (city, series) => {
   const rest = series
     .filter(({ name }) => name !== "Weather")
     .map(({ name, data, color }) => {
+      const opts = name.match(/pump/i)
+        ? {
+            fill: "origin",
+            pointRadius: 0,
+            lineTension: 0,
+            spanGaps: false,
+          }
+        : {
+            fill: false,
+          };
+
       return {
         label: name,
         yAxisID: "tub_temp",
         borderColor: chartColor(color),
         backgroundColor: chartColor(color),
-        fill: false,
+        ...opts,
         data: makeTimeData(data),
-        type: name.match(/pump/i) ? "bar" : "line",
       };
     });
 
