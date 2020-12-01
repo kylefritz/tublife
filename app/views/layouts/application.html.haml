@@ -16,7 +16,7 @@
     .container-xl
       = yield
       - if current_user&.is_admin?
-        %footer.text-center.mt-1
+        %footer.text-center.mt-1#footer
           %small
             %a{:href => "/admin"} Admin Site
     %script{:crossorigin => "anonymous", :integrity => "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo", :src => "https://code.jquery.com/jquery-3.3.1.slim.min.js"}

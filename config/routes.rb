@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   ActiveAdmin.routes(self)
 
-  root to: "home#show"
+  root to: "readings#show"
+
+  get '/readings' => 'readings#show'
 
   # sign in
   get '/auth' => redirect('/users/sign_in')
