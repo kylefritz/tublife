@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   root to: "home#show"
 
+  get '/readings' => 'readings#show'
+
   # sign in
   get '/auth' => redirect('/users/sign_in')
   get '/login' => redirect('/users/sign_in')
