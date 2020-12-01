@@ -71,13 +71,32 @@ const makeChart = (city, series) => {
           },
         ],
         yAxes: [
-          { id: "tub_temp", ticks: { min: 85, max: 110 } },
+          {
+            id: "tub_temp",
+            ticks: {
+              min: 85,
+              max: 110,
+              callback: (v) => v + "°F",
+            },
+            scaleLabel: {
+              display: true,
+              labelString: "Tub",
+            },
+          },
           {
             id: "air_temp",
-            ticks: { min: 30, max: 70 },
+            ticks: {
+              min: 30,
+              max: 70,
+              callback: (v) => v + "°F",
+            },
             position: "right",
             // only want the grid lines for one axis to show up
             gridLines: { drawOnChartArea: false },
+            scaleLabel: {
+              display: true,
+              labelString: "Outside",
+            },
           },
         ],
       },
