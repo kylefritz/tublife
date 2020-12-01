@@ -1,92 +1,71 @@
-console.log("fucking tub graph");
+import axios from "axios";
+import moment from "moment";
+import _ from "lodash";
 
-window.chartColors = {
-  red: "rgb(255, 99, 132)",
-  orange: "rgb(255, 159, 64)",
-  yellow: "rgb(255, 205, 86)",
-  green: "rgb(75, 192, 192)",
-  blue: "rgb(54, 162, 235)",
-  purple: "rgb(153, 102, 255)",
-  grey: "rgb(201, 203, 207)",
-};
+const makeChart = (city, series) => {
+  var ctx = document.getElementById(city).getContext("2d");
 
-let seed = 42;
-const randomScalingFactor = (min = -100, max = 100) => {
-  min = min === undefined ? 0 : min;
-  max = max === undefined ? 1 : max;
-  seed = (seed * 9301 + 49297) % 233280;
-  return Math.round(min + (seed / 233280) * (max - min));
-};
+  const weather = series.filter(({ name }) => name === "Weather")[0].data;
+  const rest = series
+    .filter(({ name }) => name !== "Weather")
+    .map(({ name, data, color }) => {
+      return {
+        label: name,
+        yAxisID: "tub_temp",
+        borderColor: chartColor(color),
+        backgroundColor: chartColor(color),
+        fill: false,
+        data: makeTimeData(data),
+        type: name.match(/pump/i) ? "bar" : "line",
+      };
+    });
 
-// INITIALIZATION
-var lineChartData = {
-  labels: ["January", "February", "March", "April", "May", "June", "July"],
-  datasets: [
-    {
-      label: "My First dataset",
-      borderColor: window.chartColors.red,
-      backgroundColor: window.chartColors.red,
-      fill: false,
-      data: [
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-      ],
-      yAxisID: "y-axis-1",
-    },
-    {
-      label: "My Second dataset",
-      borderColor: window.chartColors.blue,
-      backgroundColor: window.chartColors.blue,
-      fill: false,
-      data: [
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-        randomScalingFactor(),
-      ],
-      yAxisID: "y-axis-2",
-    },
-  ],
-};
-
-window.onload = function () {
-  var ctx = document.getElementById("canvas").getContext("2d");
-  window.myLine = Chart.Line(ctx, {
-    data: lineChartData,
+  const data = {
+    datasets: [
+      {
+        label: "Weather",
+        yAxisID: "air_temp",
+        borderColor: chartColor("blue"),
+        fill: false,
+        data: makeTimeData(weather),
+      },
+      ...rest,
+    ],
+  };
+  // debugger;
+  return Chart.Line(ctx, {
+    data,
     options: {
       responsive: true,
       hoverMode: "index",
       stacked: false,
       title: {
         display: true,
-        text: "Chart.js Line Chart - Multi Axis",
+        text: _.capitalize(city),
       },
       scales: {
-        yAxes: [
+        xAxes: [
           {
-            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-            display: true,
-            position: "left",
-            id: "y-axis-1",
-          },
-          {
-            type: "linear", // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-            display: true,
-            position: "right",
-            id: "y-axis-2",
-
-            // grid line settings
-            gridLines: {
-              drawOnChartArea: false, // only want the grid lines for one axis to show up
+            type: "time",
+            distribution: "series",
+            offset: true,
+            ticks: {
+              source: "data",
+              autoSkip: true,
+              autoSkipPadding: 75,
+              maxRotation: 0,
+              sampleSize: 100,
             },
+          },
+        ],
+        yAxes: [
+          { id: "tub_temp", ticks: { min: 85, max: 110 } },
+          {
+            id: "air_temp",
+            ticks: { min: 30, max: 70 },
+            position: "right",
+            // only want the grid lines for one axis to show up
+            gridLines: { drawOnChartArea: false },
           },
         ],
       },
@@ -94,12 +73,28 @@ window.onload = function () {
   });
 };
 
-document.getElementById("randomizeData").addEventListener("click", function () {
-  lineChartData.datasets.forEach(function (dataset) {
-    dataset.data = dataset.data.map(function () {
-      return randomScalingFactor();
-    });
+window.onload = () => {
+  axios.get("/readings.json").then((response) => {
+    const { baltimore, richmond } = response.data;
+    makeChart("baltimore", baltimore);
+    makeChart("richmond", richmond);
   });
+};
 
-  window.myLine.update();
-});
+// document.getElementById("randomizeData").addEventListener("click", function () {});
+
+const chartColor = (color) => {
+  const chartColors = {
+    red: "rgb(255, 99, 132)",
+    orange: "rgb(255, 159, 64)",
+    yellow: "rgb(255, 205, 86)",
+    green: "rgb(75, 192, 192)",
+    blue: "rgb(54, 162, 235)",
+    purple: "rgb(153, 102, 255)",
+    grey: "rgb(201, 203, 207)",
+  };
+  return chartColors[color] || color;
+};
+
+const makeTimeData = (data) =>
+  data.map(([t, y]) => ({ t: moment(t).valueOf(), y }));

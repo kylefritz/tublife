@@ -1,17 +1,17 @@
 def temps(records)
-  Hash[records.pluck(["created_at", "temp_f"])]
+  records.pluck(["created_at", "temp_f"])
 end
 def weather(city)
-  {name: "Weather", data: temps(Weather.where(city: city)), color: "blue"}
+  {name: "Weather", data: temps(Weather.where(city: city).order(:created_at)), color: "blue"}
 end
 
 def readings(device, color)
-  {name: device, data: temps(Reading.where(device_name: device)), color: color}
+  {name: device, data: temps(Reading.where(device_name: device).order(:created_at)), color: color}
 end
 
 def pump(device, color)
-  data = Reading.where(device_name: device, pump: true).pluck(["created_at", "pump"]).map{|date, pump| [date, pump ? 95 : 0] }
-  {name: device, data: Hash[data], color: color}
+  data = Reading.where(device_name: device, pump: true).order(:created_at).pluck(["created_at", "pump"]).map{|date, pump| [date, pump ? 95 : 0] }
+  {name: "Pump", data: data, color: color}
 end
 
 lucas_device = "ElizTUBeth Warmen"
