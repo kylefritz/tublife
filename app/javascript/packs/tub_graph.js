@@ -99,12 +99,12 @@ const makeChart = (city, series) => {
         yAxes: [
           {
             id: "tub_temp",
+            position: "right",
             ticks: {
               min: 85,
               max: 110,
               callback: formatDegrees,
             },
-            position: "right",
             scaleLabel: {
               display: true,
               labelString: "Tub",
@@ -112,6 +112,7 @@ const makeChart = (city, series) => {
           },
           {
             id: "air_temp",
+            position: "right",
             ticks: {
               min: 30,
               max: 70,
