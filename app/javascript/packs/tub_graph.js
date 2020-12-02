@@ -4,6 +4,32 @@ import _ from "lodash";
 import Chart from "chart.js";
 require("chartjs-plugin-zoom");
 
+const isMobile = (() => {
+  try {
+    document.createEvent("TouchEvent");
+    return true;
+  } catch {
+    return false;
+  }
+})();
+
+function makeSubtitle({ weather, rest }) {
+  try {
+    const currentWeather = weather[weather.length - 1][1];
+    const temps = rest
+      .filter(({ label }) => label != "Pump")
+      .map(({ label, data }) => `${label} ${data[data.length - 1].y}°`)
+      .join(", ");
+
+    return `${currentWeather}°, ${temps}`;
+  } catch ({ message }) {
+    console.error("error making subtitle", message);
+  }
+}
+function formatDegrees(v) {
+  return Math.round(v) + "°F";
+}
+
 const makeChart = (city, series) => {
   var ctx = document.getElementById(city).getContext("2d");
 
@@ -44,7 +70,7 @@ const makeChart = (city, series) => {
       ...rest,
     ],
   };
-  // debugger;
+  const title = _.capitalize(city) + "\n" + makeSubtitle({ weather, rest });
   return Chart.Line(ctx, {
     data,
     options: {
@@ -53,7 +79,7 @@ const makeChart = (city, series) => {
       stacked: false,
       title: {
         display: true,
-        text: _.capitalize(city),
+        text: title,
       },
       scales: {
         xAxes: [
@@ -76,8 +102,9 @@ const makeChart = (city, series) => {
             ticks: {
               min: 85,
               max: 110,
-              callback: (v) => v + "°F",
+              callback: formatDegrees,
             },
+            position: "right",
             scaleLabel: {
               display: true,
               labelString: "Tub",
@@ -88,9 +115,8 @@ const makeChart = (city, series) => {
             ticks: {
               min: 30,
               max: 70,
-              callback: (v) => v + "°F",
+              callback: formatDegrees,
             },
-            position: "right",
             // only want the grid lines for one axis to show up
             gridLines: { drawOnChartArea: false },
             scaleLabel: {
@@ -103,12 +129,11 @@ const makeChart = (city, series) => {
       plugins: {
         zoom: {
           pan: {
-            enabled: true,
+            enabled: !isMobile,
             mode: "xy",
           },
           zoom: {
-            enabled: true,
-            // drag: true,
+            enabled: !isMobile,
             mode: "xy",
           },
         },
