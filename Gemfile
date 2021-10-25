@@ -30,7 +30,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'progress_bar'
 gem 'puma', '>= 3.12.2' # web/app server
 gem 'rails-settings-cached' # site-wide settings
-gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
+gem 'rails', '~> 6.0.3', '>= 6.0.3.6'
 gem 'redcarpet' # markdown the baker's note in admin
 gem 'sass-rails', '>= 6' # css
 gem 'sentry-raven' # debugging to sentry.io
