@@ -16,5 +16,5 @@ end
 
 lucas_device = "ElizTUBeth Warmen"
 
-json.baltimore [weather("Baltimore"), readings("Kale-a Lilly", "yellow"), readings("OBGTub", "green")]
+json.baltimore [weather("Baltimore"), readings("East Tub", "yellow"), readings("West Tub", "purple")]
 json.richmond [weather("Richmond"), readings(lucas_device, "purple"), pump(lucas_device, "red")]

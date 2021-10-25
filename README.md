@@ -11,3 +11,8 @@ reading_times.each do |reading_at|
   Weather.history!("Richmond", 37.553761, -77.460258, reading_at)
 end
 ```
+
+
+TODO:
+ * mobile web with sparkline
+ * roll-up readings so only have one value per day after 48 hours
