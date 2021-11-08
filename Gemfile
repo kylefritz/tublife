@@ -7,6 +7,7 @@ ruby '2.7.4'
 # please keep gems sorted; include comment for why a gem is needed
 #
 gem 'activeadmin' # admin ui
+gem 'active_median' # Median and percentile for Active Record
 gem 'ahoy_email' # email analytics
 gem 'aws-sdk-s3', require: false # for s3/active storage
 gem 'bcrypt', '~> 3.1.7' # for devise
@@ -32,6 +33,7 @@ gem 'puma', '>= 3.12.2' # web/app server
 gem 'rails-settings-cached' # site-wide settings
 gem 'rails', '~> 6.0.3', '>= 6.0.3.6'
 gem 'redcarpet' # markdown the baker's note in admin
+gem 'rollups' # Rollup time-series data in Rails
 gem 'sass-rails', '>= 6' # css
 gem 'sentry-raven' # debugging to sentry.io
 gem 'sql_query' # load SQL queries from erb templates

@@ -2,14 +2,12 @@ def temps(records)
   records.pluck(["created_at", "temp_f"])
 end
 
-limit = 150 # last 24 hours
-
 def weather(city)
-  {name: "Weather", data: temps(Weather.where(city: city).order(:created_at).limit(limit)), color: "blue"}
+  {name: "Weather", data: temps(Weather.where(city: city).order(:created_at)), color: "blue"}
 end
 
 def readings(device, color)
-  {name: device, data: temps(Reading.where(device_name: device).order(:created_at).limit(limit)), color: color}
+  {name: device, data: temps(Reading.where(device_name: device).order(:created_at)), color: color}
 end
 
 def pump(device, color)
