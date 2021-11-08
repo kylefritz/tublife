@@ -1,7 +1,7 @@
 namespace :rollups do
     desc "rollup the old rows & truncate db"
     task rollup_and_truncate: :environment do
-        ["Baltimore"].each do |city|
+        ["Baltimore", "Richmond"].each do |city|
             Weather.where(city: city).rollup(city) { |r| r.median(:temp_f) }
         end
 
