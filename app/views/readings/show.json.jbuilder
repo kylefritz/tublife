@@ -15,7 +15,7 @@ def pump(device, color)
   {name: "Pump", data: data, color: color}
 end
 
-lucas_device = "ElizTUBeth Warmen"
-
 json.baltimore [weather("Baltimore"), readings("East Tub", "yellow"), readings("West Tub", "purple")]
-json.richmond [weather("Richmond"), readings(lucas_device, "purple"), pump(lucas_device, "red")]
+
+# lucas
+json.richmond [weather("Richmond"), readings("Good Soup", "purple"), pump(lucas_device, "red")]

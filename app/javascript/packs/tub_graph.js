@@ -149,7 +149,7 @@ window.onload = () => {
     const { baltimore, richmond } = response.data;
     charts = [
       makeChart("baltimore", baltimore),
-      // makeChart("richmond", richmond),
+      makeChart("richmond", richmond),
     ];
   });
 
